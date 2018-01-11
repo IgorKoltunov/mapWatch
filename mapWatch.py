@@ -33,14 +33,20 @@ def main():
     with open('listOfPlacemarks.pkl', 'rb') as f:
         cachedListOfPlacemarks = pickle.load(f)
 
+    # Quick Tests:
     # cachedListOfPlacemarks.append('test')
+    # listOfPlacemarks.append('another')
+   
     delta = set(listOfPlacemarks)^set(cachedListOfPlacemarks)
 
     if delta:
         print('There ARE differences between cached and live placemark list.')
         # pp(delta)
         diff = difflib.Differ().compare(cachedListOfPlacemarks, listOfPlacemarks)
-        print('\n'.join(diff))
+        for i in diff:
+            if i[0] != ' ':
+                print(i)
+        # print('\n'.join(diff))
     else:
         print('There are NO differences between cached and live placemark list.')
         
