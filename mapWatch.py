@@ -142,7 +142,8 @@ def main():
                   'THC',
                   'Safe Accessible Solutions',
                   'PSA Organica',
-                  'Lakeside Herbal Solutions']
+                  'Lakeside Herbal Solutions',
+                  'test']
 
     #url = 'http://www.google.com/maps/d/kml?forcekml=1&mid=1f4p3zPa1uU_gRnbQzMAqCZTPzD4' # National Parks
     # url = 'http://www.google.com/maps/d/kml?forcekml=1&mid=1Zn_fIUf06TLnOshLtZCqdbbHLCo' # CA Parks
@@ -158,13 +159,9 @@ def main():
         myText = myText.replace('\n', '')
         listOfPlacemarks.append(myText)
 
-    for i in listOfPlacemarks:
-        if i not in cachedList:
-            print(i)
+    # Need to compare the two lists.
 
-    print('done')
-
-    # pp(listOfPlacemarks)
+    pp(listOfPlacemarks)
 
 if __name__ == '__main__':
     main()
