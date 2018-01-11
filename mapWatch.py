@@ -1,7 +1,7 @@
 import urllib.request
 import xml.etree.ElementTree as ET
-
 from pprint import pprint as pp
+
 
 def main():
     cachedList = ['Monterey Bay Alternative Medicine',
@@ -147,12 +147,12 @@ def main():
     #url = 'http://www.google.com/maps/d/kml?forcekml=1&mid=1f4p3zPa1uU_gRnbQzMAqCZTPzD4' # National Parks
     # url = 'http://www.google.com/maps/d/kml?forcekml=1&mid=1Zn_fIUf06TLnOshLtZCqdbbHLCo' # CA Parks
     url = 'http://www.google.com/maps/d/kml?forcekml=1&mid=1aJKR8O-8BWOb9uR7p_2UmapNTL6n154B' # 420
-   
+    listOfPlacemarks = []
+
     with urllib.request.urlopen(url) as response:
         html = response.read()
         root = ET.fromstring(html)
     
-    listOfPlacemarks = []
     for i in root[0][-1].findall('{http://www.opengis.net/kml/2.2}Placemark'):
         myText = i[0].text.replace('\xa0', '')
         myText = myText.replace('\n', '')
