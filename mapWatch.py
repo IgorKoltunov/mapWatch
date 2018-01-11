@@ -1,6 +1,7 @@
 import urllib.request
 import xml.etree.ElementTree as ET
 import pickle
+import difflib
 from pprint import pprint as pp
 
 
@@ -23,12 +24,26 @@ def main():
         myText = myText.replace('\n', '')
         listOfPlacemarks.append(myText)
 
-    pp(listOfPlacemarks)
+    # pp(listOfPlacemarks)
 
     # Cache the list of Placemarks 
     # with open('listOfPlacemarks.pkl', 'wb') as f:
     #     pickle.dump(listOfPlacemarks, f)
 
+    with open('listOfPlacemarks.pkl', 'rb') as f:
+        cachedListOfPlacemarks = pickle.load(f)
+
+    # cachedListOfPlacemarks.append('test')
+    delta = set(listOfPlacemarks)^set(cachedListOfPlacemarks)
+
+    if delta:
+        print('There ARE differences between cached and live placemark list.')
+        # pp(delta)
+        diff = difflib.Differ().compare(cachedListOfPlacemarks, listOfPlacemarks)
+        print('\n'.join(diff))
+    else:
+        print('There are NO differences between cached and live placemark list.')
+        
 
 if __name__ == '__main__':
     main()
