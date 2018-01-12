@@ -39,6 +39,8 @@ def main():
    
     delta = set(listOfPlacemarks)^set(cachedListOfPlacemarks)
 
+    print('Number of Placemarks:', len(listOfPlacemarks), '\n')
+
     if delta:
         print('There ARE differences between cached and live placemark list.')
         # pp(delta)
@@ -49,7 +51,7 @@ def main():
         # print('\n'.join(diff))
     else:
         print('There are NO differences between cached and live placemark list.')
-        
+
 
 if __name__ == '__main__':
     main()
